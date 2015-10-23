@@ -1,3 +1,22 @@
+/* Usage:
+ *
+ * var hide = new Hide();
+ * hide.setStyles = function(elem) {
+ *   elem.style.backgroundColor = "#fff";
+ * };
+ * hide.hideMore('className');
+ *
+ * OR
+ *
+ * var hide = new Hide();
+ * hide.setStyles = function(elem) {
+ *   elem.style.backgroundColor = "#fff";
+ * };
+ * var scrollElem = document.getElemenByID('scrollID');
+ * hide.hideMore('className', scrollElem);
+ *
+ */
+
 function Hide(topBound, bottomBound) {
   topBound = topBound || 0;
   bottomBound = bottomBound || 0;
