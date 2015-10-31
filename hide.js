@@ -68,23 +68,18 @@ function Hide(topBound, bottomBound) {
       return Math.max(document.documentElement.scrollTop, document.body.scrollTop);
     }
 
-    var top = ((posY(elem, scrollElem)
-          > (scrollY(scrollElem)
-            - topBound))
-        && (posY(elem, scrollElem)
-          < (scrollY(scrollElem)
-            + viewHeight(scrollElem)
-            + bottomBound)));
-    var bottom = (((posY(elem, scrollElem)
-            + elem.clientHeight)
-          > (scrollY(scrollElem)
-            - topBound))
-        && ((posY(elem, scrollElem)
-            + elem.clientHeight)
-          < (scrollY(scrollElem)
-            + viewHeight(scrollElem)
-            + bottomBound)));
-    return top || bottom;
+    var pxPosTop = posY(elem, scrollElem);
+    var pxPosBot = pxPosTop + elem.clientHeight;
+    var upperBound = scrollY(scrollElem) - topBound;
+    var lowerBound = scrollY(scrollElem) + viewHeight(scrollElem) + bottomBound;
+
+    var top = ((pxPosTop > upperBound) && (pxPosTop < lowerBound));
+
+    var bottom = ((pxPosBot > upperBound) && (pxPosBot < lowerBound));
+
+    var span = ((pxPosTop < upperBound) && (pxPosBot > lowerBound));
+
+    return top || bottom || span;
   }
 
   function showElem(elem) {
